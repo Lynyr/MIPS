@@ -32,7 +32,7 @@
 		li	$v0, 10
 		syscall
 		
-#	Funções		#
+#	Funcoes		#
 		
 	cosh:
 		subi	$sp, $sp, 4
