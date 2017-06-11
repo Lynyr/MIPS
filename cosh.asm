@@ -67,15 +67,15 @@
 		 		
  	fact:
 		subi	$sp, $sp, 8
-		sw	$ra, ($sp)
+		sw	$ra, ($sp)			#Salva $ra atual
 		sw	$s0, 4($sp)			#Salva o valor atual
 		#Se o numero for 0, resultado 1
 		li	$v0, 1
 		beqz	$a0, fimFact			#Condicao para sair da funcao
 		#Recursao
-		move	$s0, $a0
+		move	$s0, $a0			#Salva valor atual em $s0 para ser adicionado a pilha
 		sub	$a0, $a0, 1			#Controla o numero de iteracoes
-		jal	fact
+		jal	fact				#recursao
 		#Convertendo para float e multiplicando os valores salvos
 		sw	$s0, -88($fp)
 		l.s	$f6, -88($fp)
