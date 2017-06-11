@@ -42,8 +42,14 @@
 		#Se X = 0 retorna 1
 		c.eq.s	$f9, $f0			#Comparacao com 0
 		bc1t	fimCosh				#Condicao para sair da funcao
-		#Chamando funcoes auxiliares para calcular exponencial e fatorial
-		jal	pot				#Chama a funcao que faz o exponencial
+		#Loop que calcula a potencia
+		li	$t4, 1				#Reseta valor de $t4 para o loop
+		add.s 	$f4, $f0, $f9			#Reseta valor de $f4 para o numero digitado pelo usuario
+	loop:	#Multiplica ate que $t4 seja igual ao expoente $s7
+		addi	$t4, $t4, 1			#Controla o numero de iteracoes
+		mul.s	$f4, $f4, $f9			#Fazendo a multiplicacao
+		blt	$t4, $s7, loop			#Condicao para voltar ou sair do loop
+		#Chamando a funcao que faz o fatorial
 		move	$a0, $s7			#Coloca $s7 na variavel que deve ser fatorada
 		li	$s0, 0				#Reseta o valor de $s0 para realizar o fatorial
 		mov.s	$f7, $f1			#Reseta o valor de $f7 para realizar o fatorial
@@ -58,18 +64,7 @@
 		lw	$ra, ($sp)			#Carrega $ra da pilha ate voltar para o main:
 		addu	$sp, $sp, 4			#Reseta o stack point
 		jr	$ra				#Volta para fimCosh ate o $ra apontar para a continuacao de 'main:'
-		
-	pot:
-		li	$t4, 1				#Reseta valor de $t4 para o loop
-		add.s 	$f4, $f0, $f9			#Reseta valor de $f4 para o numero digitado pelo usuario
-
-	loop:	#Multiplica ate que $t4 seja igual ao expoente $s7
-		addi	$t4, $t4, 1			#Controla o numero de iteracoes
-		mul.s	$f4, $f4, $f9			#Fazendo a multiplicacao
-		blt	$t4, $s7, loop			#Condicao para voltar ou sair do loop
-
- 		jr	$ra
- 		
+		 		
  	fact:
 		subi	$sp, $sp, 8
 		sw	$ra, ($sp)
