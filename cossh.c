@@ -2,8 +2,8 @@
 
 float cossh(float x);
 float fact(float n);
-int i = 0;				//Contador
-float resultado = 1;	//1 pois independente do valor de X a primeira iteracao da serie sempre e 1
+int i = 0;			//Contador
+float resultado = 1;		//1 pois independente do valor de X a primeira iteracao da serie sempre e 1
 float potencia = 1;		//1 para nao zerar a multiplicacao quando for receber as multiplicacoes
 float divisor = 0;
 
@@ -20,7 +20,7 @@ float cossh(float x) {
 		return 1;
 	else {
 		while ( i < 10) {		//Limitando o numero de iteracoes
-			i++;				//Contador que servira de criterio para sair da funcao
+			i++;			//Contador que servira de criterio para sair da funcao
 			potencia = potencia * x * x;
 			divisor = fact((float)i*2);
 			resultado = resultado + potencia/divisor;
