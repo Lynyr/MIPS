@@ -66,7 +66,7 @@
 		jr	$ra				#Volta para fimCosh ate o $ra apontar para a continuacao de 'main:'
 		 		
  	fact:
-		subi	$sp, $sp, 8
+		subi	$sp, $sp, 8			#Aloca espaco na pilha
 		sw	$ra, ($sp)			#Salva $ra atual
 		sw	$s0, 4($sp)			#Salva o valor atual
 		#Se o numero for 0, resultado 1
@@ -77,13 +77,13 @@
 		sub	$a0, $a0, 1			#Controla o numero de iteracoes
 		jal	fact				#recursao
 		#Convertendo para float e multiplicando os valores salvos
-		sw	$s0, -88($fp)
-		l.s	$f6, -88($fp)
-		cvt.s.w	$f6, $f6
-		mul.s	$f7, $f6, $f7
+		sw	$s0, -88($fp)			#Salva o valor da pilha em uma posicao qualquer de memoria
+		l.s	$f6, -88($fp)			#Carrega o valor salvo na memoria em um float
+		cvt.s.w	$f6, $f6			#Converte o valor inteiro salvo no float para float
+		mul.s	$f7, $f6, $f7			#Multiplica os valores salvos na pilha e salva em $f7
 		
 	fimFact:
-		lw	$ra, ($sp)
-		lw	$s0, 4($sp)
-		addu	$sp, $sp, 8
-		jr	$ra
+		lw	$ra, ($sp)			#Carrega $ra atual
+		lw	$s0, 4($sp)			#Carrega o valor salvo na pilha
+		addu	$sp, $sp, 8			#Reseta o espaco na pilha
+		jr	$ra				#Volta para a conversao ate o $ra apontar para a funcao "cosh"
