@@ -12,6 +12,7 @@ int main() {
 	printf("Escolha um valor para X em Cosh(X): ");
 	scanf("%f", &x);
 	printf("\nO valor do Cosh de %f: %f\n", x, cossh(x));
+	getch();	//Evita que o programa feche logo apos mostrar cossh
 	return 0;
 }
 
