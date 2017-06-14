@@ -77,9 +77,8 @@
 		sub	$a0, $a0, 1			#Controla o numero de iteracoes
 		jal	fact				#recursao
 		#Convertendo para float e multiplicando os valores salvos
-		sw	$s0, -88($fp)			#Salva o valor da pilha em uma posicao qualquer de memoria
-		l.s	$f6, -88($fp)			#Carrega o valor salvo na memoria em um float
-		cvt.s.w	$f6, $f6			#Converte o valor inteiro salvo no float para float
+		mtc1	$s0, $f6			#Transfere o valor inteiro para $f6
+		cvt.s.w	$f6, $f6			#Converte para Float
 		mul.s	$f7, $f6, $f7			#Multiplica os valores salvos na pilha e salva em $f7
 		
 	fimFact:
