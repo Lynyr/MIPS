@@ -6,7 +6,7 @@
 	resultado:	.float	0.0		#Salva o valor do resultado apos a funcao
 .text
 	main:	
-		li	$s6, 20			#Valor maximo para 2n, limitando o numero de interacoes de cosh
+		li	$s6, 20			#Valor maximo para 2n, limitando o numero de iteracoes de cosh
 		li	$s7, 2			#Valor inicial de 2n, servira como exponencial e divisor na serie de taylor
 		#Obtendo input do usuario
 		li	$v0, 4
@@ -21,7 +21,7 @@
 		lwc1	$f1, um
 		lwc1	$f7, um			#Vai receber o valor do fatorial
 		lwc1	$f8, um			#Vai receber output da funcao
-						#comeca em 1 para representar a primeira interacao que sempre resulta em 1
+						#comeca em 1 para representar a primeira iteracao que sempre resulta em 1
 						#independente do valor escolhido
 		#Chamando funcao
 		jal	cosh
